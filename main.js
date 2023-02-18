@@ -35,7 +35,6 @@ function generateOpponentCard() {
   }
   opponentCardGenerated = true
   let randomCard = Math.floor(Math.random() * 3) + 1
-  console.log(randomCard)
   if (randomCard === 1) {
     document.getElementById('opponent-fire').style.display = 'flex'
     opponentCard = 'fire'
@@ -66,14 +65,26 @@ playAgain.addEventListener('click', function () {
 function checkForWin(playerCard, computerCard) {
   if (playerCard === computerCard) {
     document.getElementById('winning-text').innerHTML = 'Its a tie!'
+    drawWinCounter += 1
+    document.getElementById('drawCounter').innerHTML =
+      'Games Tied: ' + drawWinCounter
+    console.log(drawWinCounter)
   } else if (
     (playerCard === 'fire' && computerCard === 'leaf') ||
     (playerCard === 'water' && computerCard === 'fire') ||
     (playerCard === 'leaf' && computerCard === 'water')
   ) {
     document.getElementById('winning-text').innerHTML = 'You win!'
+    playerWinCounter += 1
+    document.getElementById('playerWinCounter').innerHTML =
+      'Player Wins: ' + playerWinCounter
+    console.log(playerWinCounter)
   } else {
     document.getElementById('winning-text').innerHTML = 'The Computer Wins'
+    computerWinCounter += 1
+    document.getElementById('computerWinCounter').innerHTML =
+      'Computer Wins: ' + computerWinCounter
+    console.log(computerWinCounter)
   }
 }
 
