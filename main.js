@@ -1,5 +1,6 @@
 const playAgain = document.getElementById('play-again')
 let opponentCardGenerated = false
+let roundEnded = false
 let opponentCard
 let playerWinCounter = 0
 let drawWinCounter = 0
@@ -12,16 +13,14 @@ function chooseCard() {
       playerCards.forEach((otherCard) => {
         if (otherCard !== playerCard) {
           otherCard.style.display = 'none'
+          otherCard.removeEventListener('click', onPlayerCardClick)
         }
       })
 
-      document.getElementById('winning-text').innerHTML =
-        'You have chosen ' + playerCard.id
       playerCard.removeEventListener('click', onPlayerCardClick)
       document.getElementById('winning-text').innerHTML = 'Opponent thinking...'
       setTimeout(() => {
         generateOpponentCard()
-        document.getElementById('winning-text').innerHTML = 'You win!'
         playAgain.style.display = 'block'
         checkForWin(playerCard.id, opponentCard)
       }, 2000)
@@ -63,29 +62,38 @@ playAgain.addEventListener('click', function () {
 })
 
 function checkForWin(playerCard, computerCard) {
+  if (roundEnded) {
+    return
+  }
+
+  roundEnded = true
   if (playerCard === computerCard) {
     document.getElementById('winning-text').innerHTML = 'Its a tie!'
-    drawWinCounter += 1
+    drawWinCounter = drawWinCounter + 1
     document.getElementById('drawCounter').innerHTML =
       'Games Tied: ' + drawWinCounter
-    console.log(drawWinCounter)
+    console.log('draw  ' + drawWinCounter)
   } else if (
     (playerCard === 'fire' && computerCard === 'leaf') ||
     (playerCard === 'water' && computerCard === 'fire') ||
     (playerCard === 'leaf' && computerCard === 'water')
   ) {
     document.getElementById('winning-text').innerHTML = 'You win!'
-    playerWinCounter += 1
+    playerWinCounter = playerWinCounter + 1
     document.getElementById('playerWinCounter').innerHTML =
       'Player Wins: ' + playerWinCounter
-    console.log(playerWinCounter)
+    console.log('player ' + playerWinCounter)
   } else {
     document.getElementById('winning-text').innerHTML = 'The Computer Wins'
-    computerWinCounter += 1
+    computerWinCounter = computerWinCounter + 1
     document.getElementById('computerWinCounter').innerHTML =
       'Computer Wins: ' + computerWinCounter
-    console.log(computerWinCounter)
+    console.log('computer ' + computerWinCounter)
   }
+
+  setTimeout(() => {
+    roundEnded = false
+  }, 2000)
 }
 
 chooseCard()

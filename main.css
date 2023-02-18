@@ -70,32 +70,32 @@
  }
 
  #fire {
-  background-color: orange;
+  background-color:#FFAE34;
  }
 
  #water {
-  background-color: darkblue;
+  background-color: #34BCFF;
  }
 
  #leaf {
-  background-color: green;
+  background-color: #8BFF34;
  }
 
  #opponent-fire {
-  background-color: orange;
+  background-color: #FFAE34;
  }
 
  #opponent-water {
-  background-color: darkblue;
+  background-color: #34BCFF;
  }
 
  #opponent-leaf {
-  background-color: green;
+  background-color: #8BFF34;
  }
 
  #play-again {
   font-size: 48px;
-  background-color: hotpink;
+  background-color: #FA34FF;
   color: white;
   outline: black solid 4px;
   border-radius: 24px;
