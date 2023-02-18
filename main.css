@@ -5,6 +5,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
 .container {
   max-width: 1200px;
   width: 100%;
@@ -29,14 +30,16 @@
   border: 8px solid black;
   border-radius: 20px;
   font-size: 48px;
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  
+  color:white;
   font-weight: bold;
  }
+
+
 
  .card:hover {
   transform: scale(1.1);
@@ -48,16 +51,44 @@
  }
 
  .fa-leaf {
-  color: green;
+  color:white;
   padding: 100px
  }
 
  .fa-droplet {
-  color: darkblue;
+  color:white;
   padding: 100px
  }
 
  .fa-fire {
-  color: orange;
+  color:white;
   padding: 100px
+ }
+
+ .opponent-card {
+  display: none;
+ }
+
+ #fire {
+  background-color: orange;
+ }
+
+ #water {
+  background-color: darkblue;
+ }
+
+ #leaf {
+  background-color: green;
+ }
+
+ #opponent-fire {
+  background-color: orange;
+ }
+
+ #opponent-water {
+  background-color: darkblue;
+ }
+
+ #opponent-leaf {
+  background-color: green;
  }
