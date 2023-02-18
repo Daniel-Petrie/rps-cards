@@ -105,9 +105,18 @@
   display: none;
  }
 
+ #play-again:active {
+  transform: scale(0.9);
+ }
+
  .wincounter {
   position: absolute;
   right: 0;
   top: 0;
   padding: 64px;
  }
+
+ .winner {
+  box-shadow: 0 0 100px yellow;
+ }
+

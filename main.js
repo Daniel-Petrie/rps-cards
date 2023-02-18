@@ -5,6 +5,8 @@ let opponentCard
 let playerWinCounter = 0
 let drawWinCounter = 0
 let computerWinCounter = 0
+let cardIds = ['fire', 'water', 'leaf']
+let opponentCardIds = ['opponent-fire', 'opponent-leaf', 'opponent-water']
 
 function chooseCard() {
   const playerCards = document.querySelectorAll('.player-card')
@@ -50,12 +52,16 @@ function generateOpponentCard() {
 }
 
 playAgain.addEventListener('click', function () {
-  document.getElementById('opponent-fire').style.display = 'none'
-  document.getElementById('opponent-water').style.display = 'none'
-  document.getElementById('opponent-leaf').style.display = 'none'
-  document.getElementById('fire').style.display = 'flex'
-  document.getElementById('water').style.display = 'flex'
-  document.getElementById('leaf').style.display = 'flex'
+  for (i = 0; i < cardIds.length; i++) {
+    document.getElementById(cardIds[i]).style.display = 'flex'
+    document.getElementById(cardIds[i]).classList.remove('winner')
+  }
+
+  for (i = 0; i < opponentCardIds.length; i++) {
+    document.getElementById(opponentCardIds[i]).style.display = 'none'
+    document.getElementById(opponentCardIds[i]).classList.remove('winner')
+  }
+
   document.getElementById('winning-text').innerHTML = 'Choose A Card'
   playAgain.style.display = 'none'
   chooseCard()
@@ -72,7 +78,6 @@ function checkForWin(playerCard, computerCard) {
     drawWinCounter = drawWinCounter + 1
     document.getElementById('drawCounter').innerHTML =
       'Games Tied: ' + drawWinCounter
-    console.log('draw  ' + drawWinCounter)
   } else if (
     (playerCard === 'fire' && computerCard === 'leaf') ||
     (playerCard === 'water' && computerCard === 'fire') ||
@@ -82,13 +87,13 @@ function checkForWin(playerCard, computerCard) {
     playerWinCounter = playerWinCounter + 1
     document.getElementById('playerWinCounter').innerHTML =
       'Player Wins: ' + playerWinCounter
-    console.log('player ' + playerWinCounter)
+    document.getElementById(playerCard).classList.add('winner')
   } else {
-    document.getElementById('winning-text').innerHTML = 'The Computer Wins'
+    document.getElementById('winning-text').innerHTML = 'The Computer Wins!'
     computerWinCounter = computerWinCounter + 1
     document.getElementById('computerWinCounter').innerHTML =
       'Computer Wins: ' + computerWinCounter
-    console.log('computer ' + computerWinCounter)
+    document.getElementById('opponent-' + computerCard).classList.add('winner')
   }
 
   setTimeout(() => {
